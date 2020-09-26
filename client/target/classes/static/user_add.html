@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+</head>
+<body>
+<div class="layui-container" style="margin-top: 50px;">
+
+    <div class="layui-container" style="width: 500px;height: 330px;padding-top: 60px;">
+        <form class="layui-form" action="/user/save" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">Username：</label>
+                <div class="layui-inline">
+                    <input type="text" name="username" lay-verify="username" autocomplete="off" placeholder="Enter Username" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">Password：</label>
+                <div class="layui-inline">
+                    <input type="password" name="password" lay-verify="password" placeholder="Enter Password" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">Nickname：</label>
+                <div class="layui-inline">
+                    <input type="text" name="nickname" lay-verify="required" placeholder="Enter Nickname" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">Gender：</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="gender" value="Male" title="Male" checked="">
+                    <input type="radio" name="gender" value="Female" title="Female">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">Telephone：</label>
+                <div class="layui-inline">
+                    <input type="text" name="telephone" lay-verify="telephone" placeholder="Enter Telephone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">Address：</label>
+                <div class="layui-inline">
+                    <input type="text" name="address" lay-verify="required" placeholder="Enter Address" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn" lay-submit="" style="margin-left: 160px;">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'element'], function(){
+        var form = layui.form;
+        var element = layui.element;
+
+        //自定义验证规则
+        form.verify({
+            username: function(value){
+                if(value.length == 0){
+                    return "Must have Username";
+                }
+            },
+            password: [/^[A-Za-z0-9]+$/,"密码必须由数字和字母组成"],
+            telephone: [/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/,"请输入正确的电话"]
+        });
+
+    });
+</script>
+</body>
+</html>
