@@ -1,3 +1,12 @@
+# Idea file
+*.idea
+.idea/*
+
+# MacOS file
+*.DS_Store
+.DS_Store/*
+
+
 # Compiled class file
 *.class
 
